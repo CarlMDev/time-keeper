@@ -4,4 +4,5 @@
            Hi {{ auth()->user()->name }}!
         </h2>
     </x-slot>
+    <livewire:punch-in-out />
 </x-app-layout>
