@@ -25,13 +25,13 @@ class PunchInOut extends Component
     {
         if($value == 0)
         {
-            $this->buttonStyle = "bg-blue-500 hover:bg-red-300 text-white font-bold py-2 px-4 rounded";
+            $this->buttonStyle = "bg-blue-500 hover:bg-red-300 hover:text-black text-white font-bold py-2 px-4 rounded";
             $this->buttonMessage = "CLOCK IN";
             $this->status = "You are currently clocked OUT";
         }
         else
         {
-            $this->buttonStyle = "bg-red-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded";
+            $this->buttonStyle = "bg-red-700 hover:bg-blue-200 hover:text-black text-white font-bold py-2 px-4 rounded";
             $this->buttonMessage = "CLOCK OUT";
             $this->status = "You are currently clocked IN";
         }
