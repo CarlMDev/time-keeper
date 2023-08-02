@@ -5,4 +5,5 @@
         </h2>
     </x-slot>
     <livewire:punch-in-out />
+    <livewire:current-day-time-table />
 </x-app-layout>

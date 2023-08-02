@@ -25,13 +25,13 @@ class PunchInOut extends Component
     {
         if($value == 0)
         {
-            $this->buttonStyle = "bg-blue-500 hover:bg-red-300 hover:text-black text-white font-bold py-2 px-4 rounded";
+            $this->buttonStyle = "bg-green-400 text-black font-bold py-2 px-4 rounded";
             $this->buttonMessage = "CLOCK IN";
             $this->status = "You are currently clocked OUT";
         }
         else
         {
-            $this->buttonStyle = "bg-red-700 hover:bg-blue-200 hover:text-black text-white font-bold py-2 px-4 rounded";
+            $this->buttonStyle = "bg-red-600 hover:bg-blue-200 text-white font-bold py-2 px-4 rounded";
             $this->buttonMessage = "CLOCK OUT";
             $this->status = "You are currently clocked IN";
         }
@@ -62,6 +62,8 @@ class PunchInOut extends Component
         $timeRecord->save();
         
         $this->updateVariables($user->clocked_in_out);
+
+        $this->emit('clockButtonClicked');
     }
 
     public function render()
