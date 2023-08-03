@@ -2,6 +2,9 @@
     @php
     {{ $thisDate = new DateTime(date('H:i:s')); }}
     @endphp
-
-    Current time: {{date_format($thisDate->setTimeZone(new DateTimeZone($userTimeZone)),"H:i:s"); }}  
+    @if($hourFormat == true)
+        Current time: {{date_format($thisDate->setTimeZone(new DateTimeZone($userTimeZone)),"H:i:s"); }}
+    @else
+        Current time: {{date_format($thisDate->setTimeZone(new DateTimeZone($userTimeZone)),"h:i:s a"); }}
+    @endif
 </div>
