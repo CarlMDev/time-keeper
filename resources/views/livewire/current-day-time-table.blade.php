@@ -17,10 +17,13 @@
             @endphp
             @for($i = 0; $i < sizeof($records); $i++) <tr>
                 <td class="px-2">
-                    {{date_format($records[$i]->created_at->setTimeZone('Turkey'),"m/d/Y");}}
+                    @php
+                        {{$thisDate = new DateTime($records[$i]->created_at); }}    
+                    @endphp
+                    {{date_format($thisDate->setTimeZone(new DateTimeZone($userTz)),"m/d/Y");}}
                 </td>
                 <td class="px-2">
-                    {{date_format($records[$i]->created_at->setTimeZone('Turkey'),"H:i");}}
+                    {{date_format($thisDate->setTimeZone(new DateTimeZone($userTz)),"H:i");}}
                 </td>
                 <td class="px-2">
                     @if($records[$i]->in_out == 0)
@@ -32,7 +35,9 @@
 
                 @if($records[$i]->in_out == 0 && $records[$i-1]->in_out == 1 && $i > 0)
                     @php
-                        {{ $difference = date_diff($records[$i-1]->created_at, $records[$i]->created_at, true); }}
+                        {{$firstDate = new DateTime($records[$i-1]->created_at); }}
+                        {{$secondDate = new DateTime($records[$i]->created_at); }}
+                        {{ $difference = date_diff($firstDate, $secondDate, true); }}
                         {{ $hours += $difference->h; }}
                         {{ $minutes += $difference->i; }}
                         {{ $seconds += $difference->s; }}
