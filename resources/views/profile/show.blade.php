@@ -14,7 +14,13 @@
             @endif
 
             @if (Laravel\Fortify\Features::canUpdateProfileInformation())
-            @livewire('set-time-zone')
+                @livewire('set-time-zone')
+
+                <x-section-border />
+            @endif
+
+            @if (Laravel\Fortify\Features::canUpdateProfileInformation())
+                @livewire('hour-format-switch')
 
                 <x-section-border />
             @endif
