@@ -21,17 +21,24 @@ class PunchInOut extends Component
 
     }
 
+    public function updated()
+    {
+        $user = Auth::user();
+        
+        $this->updateVariables($user->clocked_in_out);
+    }
+
     public function updateVariables($value)
     {
         if($value == 0)
         {
-            $this->buttonStyle = "bg-green-400 text-black font-bold py-2 px-4 rounded";
+            $this->buttonStyle = "bg-green-200 hover:bg-red-500 hover:text-white text-black font-bold py-2 px-4 rounded";
             $this->buttonMessage = "CLOCK IN";
             $this->status = "You are currently clocked OUT";
         }
         else
         {
-            $this->buttonStyle = "bg-red-600 hover:bg-blue-200 text-white font-bold py-2 px-4 rounded";
+            $this->buttonStyle = "bg-red-500 hover:bg-green-200 hover:text-black text-white font-bold py-2 px-4 rounded";
             $this->buttonMessage = "CLOCK OUT";
             $this->status = "You are currently clocked IN";
         }
