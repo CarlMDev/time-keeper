@@ -3,7 +3,7 @@
         <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
             <div class="overflow-hidden">
                 <table class="min-w-full text-left text-sm font-light">
-                    <thead class="border-b bg-white font-medium dark:border-neutral-500 dark:bg-neutral-600">
+                    <thead class="border-b bg-red-100 font-medium dark:border-neutral-500 dark:bg-neutral-600">
                         <tr>
                             <th scope="col" class="px-6 py-4">Date</th>
                             <th scope="col" class="px-6 py-4">Time</th>
@@ -20,7 +20,7 @@
                             {{ $totalHours = 0; }}
                         @endphp
                         @for($i = 0; $i < sizeof($records); $i++) 
-                        <tr class="border-b bg-neutral-100 dark:border-neutral-500 dark:bg-neutral-700">
+                        <tr class="border-b border-black bg-cyan-100 dark:border-neutral-500 dark:bg-neutral-700">
                             <td class="whitespace-nowrap px-6 py-4 font-medium">
                                 @php
                                     {{$thisDate = new DateTime($records[$i]->created_at); }}
