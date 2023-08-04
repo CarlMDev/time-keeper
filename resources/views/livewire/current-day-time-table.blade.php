@@ -17,6 +17,7 @@
                             {{ $minutes = 0; }}
                             {{ $seconds = 0; }}
                             {{ $difference = 0; }}
+                            {{ $totalHours = 0; }}
                         @endphp
                         @for($i = 0; $i < sizeof($records); $i++) 
                         <tr class="border-b bg-neutral-100 dark:border-neutral-500 dark:bg-neutral-700">
@@ -40,29 +41,31 @@
 
                             @if($records[$i]->in_out == 0 && $records[$i-1]->in_out == 1 && $i > 0)
                                 @php
-                                    {{$firstDate = new DateTime($records[$i-1]->created_at); }}
-                                    {{$secondDate = new DateTime($records[$i]->created_at); }}
+                                    {{ $firstDate = new DateTime($records[$i-1]->created_at); }}
+                                    {{ $secondDate = new DateTime($records[$i]->created_at); }}
                                     {{ $difference = date_diff($firstDate, $secondDate, true); }}
-                                    {{ $hours += $difference->h; }}
-                                    {{ $minutes += $difference->i; }}
-                                    {{ $seconds += $difference->s; }}
+                                    {{ $hours = $difference->h; }}
+                                    {{ $minutes = $difference->i; }}
+                                    {{ $seconds = $difference->s; }}
 
+            
                                     {{ $minutes += $seconds/60; }}
 
                                     {{ $hours += $minutes/60; }}
                                     {{ $hours = 0.01 * (int)($hours * 100); }}
+                                    {{ $totalHours += $hours; }}
                                 @endphp
                             @endif
 
                             <td class="whitespace-nowrap px-6 py-4 font-medium">
-                                {{ $hours }}
+                                {{ $totalHours }}
                             </td>
                         </tr>
                             @endfor
                     </tbody>
                 </table>
                 <div class="pt-3 flex justify-center">
-                    <span>Total: {{$hours}} hours</span>
+                    <span>Total: {{$totalHours}} hours</span>
                 </div>
             </div>
         </div>
