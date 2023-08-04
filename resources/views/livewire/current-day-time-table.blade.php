@@ -29,7 +29,12 @@
                                 {{date_format($thisDate->setTimeZone(new DateTimeZone($userTz)),"m/d/Y");}}
                             </td>
                             <td class="whitespace-nowrap px-6 py-4 font-medium">
-                                {{date_format($thisDate->setTimeZone(new DateTimeZone($userTz)),"H:i");}}
+                                @if($timeFormat == false)
+                                    {{date_format($thisDate->setTimeZone(new DateTimeZone($userTz)),"h:i a");}}
+                                @else
+                                    {{date_format($thisDate->setTimeZone(new DateTimeZone($userTz)),"H:i");}}
+                                @endif
+                               
                             </td>
                             <td class="whitespace-nowrap px-6 py-4 font-medium">
                                 @if($records[$i]->in_out == 0)
