@@ -20,6 +20,12 @@
             @endif
 
             @if (Laravel\Fortify\Features::canUpdateProfileInformation())
+                @livewire('date-format-select')
+
+                <x-section-border />
+            @endif
+
+            @if (Laravel\Fortify\Features::canUpdateProfileInformation())
                 @livewire('hour-format-switch')
 
                 <x-section-border />

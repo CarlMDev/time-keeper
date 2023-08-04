@@ -15,6 +15,7 @@ class CurrentDayTimeTable extends Component
     public $userTz;
     public $tz;
     public $timeFormat;
+    public $dateFormat;
 
     protected $listeners = ['clockButtonClicked' => 'mount'];
 
@@ -24,6 +25,7 @@ class CurrentDayTimeTable extends Component
 
         $this->userTz = Auth::user()->time_zone;
         $this->timeFormat = Auth::user()->hour_format_24;
+        $this->dateFormat =Auth::user()->date_format;
 
         $this->tz = TimeZone::where('name', '=', $this->userTz)->first();
         

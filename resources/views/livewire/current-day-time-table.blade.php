@@ -26,7 +26,7 @@
                                     {{$thisDate = new DateTime($records[$i]->created_at); }}
                                 @endphp
                                 
-                                {{date_format($thisDate->setTimeZone(new DateTimeZone($userTz)),"m/d/Y");}}
+                                {{date_format($thisDate->setTimeZone(new DateTimeZone($userTz)),$dateFormat);}}
                             </td>
                             <td class="whitespace-nowrap px-6 py-4 font-medium">
                                 @if($timeFormat == false)
