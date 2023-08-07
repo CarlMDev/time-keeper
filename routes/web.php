@@ -28,4 +28,13 @@ Route::middleware([
     Route::get('/history', function () {
         return view('history');
     })->name('history');
+
+    Route::get('/time-record-edit/{id}', function ($id) {
+        return view('time-record-edit', ['id' => $id]);
+    })->name('time-record-edit');
+
+    Route::get('/time-record-delete-confirmation/{id}', function ($id) {
+        return view('time-record-delete-confirmation', ['id' => $id]);
+    })->name('time-record-delete-confirmation');
+
 });

@@ -45,7 +45,7 @@ class History extends Component
         switch($this->selectedPeriod) 
         {
             case "1":
-                $period = Carbon::yesterday($this->userTz);
+                $period = Carbon::yesterday();
                 break;
             case "5":
                 $period = $currentDay->addDays(-5);

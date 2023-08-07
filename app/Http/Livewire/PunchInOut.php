@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Models\Timerecord;
+use App\Models\TimeRecord;
 
 class PunchInOut extends Component
 {

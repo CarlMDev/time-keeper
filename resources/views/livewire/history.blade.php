@@ -54,7 +54,9 @@
                                     </td>
                                 </tr>
                             @endfor
+                            
                             {{ $records->links() }}
+                            <br>
                             @endif
                         </tbody>
                     </table>

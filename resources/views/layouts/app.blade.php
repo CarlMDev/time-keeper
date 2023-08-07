@@ -15,8 +15,11 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <!-- Styles -->
     @livewireStyles
+
 </head>
 
 <body class="font-sans antialiased">
@@ -41,6 +44,7 @@
     </div>
 
     @stack('modals')
+    @livewire('livewire-ui-modal')
 
     @livewireScripts
 </body>
