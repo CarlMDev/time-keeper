@@ -4,4 +4,5 @@
            History
         </h2>
     </x-slot>
+    <livewire:history />
 </x-app-layout>

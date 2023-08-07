@@ -20,7 +20,13 @@
                             {{ $totalHours = 0; }}
                         @endphp
                         @for($i = 0; $i < sizeof($records); $i++) 
+
+                        @if($records[$i]->in_out == 0)
+                        <tr class="border-b border-black bg-white dark:border-neutral-500 dark:bg-neutral-700">
+                        @else
                         <tr class="border-b border-black bg-cyan-100 dark:border-neutral-500 dark:bg-neutral-700">
+                        @endif
+                        
                             <td class="whitespace-nowrap px-6 py-4 font-medium">
                                 @php
                                     {{$thisDate = new DateTime($records[$i]->created_at); }}

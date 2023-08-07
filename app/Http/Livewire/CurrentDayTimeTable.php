@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Timerecord;
 use App\Models\TimeZone;
 use Illuminate\Support\Facades\DB;
 
@@ -29,7 +28,7 @@ class CurrentDayTimeTable extends Component
 
         $this->tz = TimeZone::where('name', '=', $this->userTz)->first();
         
-        $this->records = DB::select('SELECT * FROM time_records WHERE user_id = 1 AND created_at >= CONVERT_TZ(\''. date('Y-m-d') .  ' 00:00:00\',\'' . $this->tz->code . '\',\'+00:00\');');        
+        $this->records = DB::select('SELECT * FROM time_records WHERE user_id = ' . $userId . ' AND created_at >= CONVERT_TZ(\''. date('Y-m-d') .  ' 00:00:00\',\'' . $this->tz->code . '\',\'+00:00\') ORDER BY created_at;');        
     }
 
     public function render()
