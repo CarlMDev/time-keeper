@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class CurrentDayTimeTable extends Component
 {
-
+    public $previousDayRecords;
     public $records;
     public $userTz;
     public $tz;
@@ -28,7 +28,8 @@ class CurrentDayTimeTable extends Component
 
         $this->tz = TimeZone::where('name', '=', $this->userTz)->first();
         
-        $this->records = DB::select('SELECT * FROM time_records WHERE user_id = ' . $userId . ' AND created_at >= CONVERT_TZ(\''. date('Y-m-d') .  ' 00:00:00\',\'' . $this->tz->code . '\',\'+00:00\') ORDER BY created_at;');        
+        $this->records = DB::select('SELECT * FROM time_records WHERE user_id = ' . $userId . ' AND created_at >= CONVERT_TZ(\''. date('Y-m-d') .  ' 00:00:00\',\'' . $this->tz->code . '\',\'+00:00\') ORDER BY created_at;');
+        $this->previousDayRecords = DB::select('SELECT * FROM time_records WHERE user_id = ' . $userId . ' AND created_at >= CONVERT_TZ(\''. date('Y/m/d',strtotime("-1 days")) .  ' 00:00:00\',\'' . $this->tz->code . '\',\'+00:00\') ORDER BY created_at;');        
     }
 
     public function render()

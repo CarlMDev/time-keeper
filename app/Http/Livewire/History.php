@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\TimeZone;
 use App\Models\TimeRecord;
 use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Livewire\WithPagination;
 
 class History extends Component
@@ -17,12 +18,13 @@ class History extends Component
     public $userId;
     protected $records;
     public $userTz;
+ 
 
     public function mount()
     {
         $this->userId = Auth::user()->id;
         
-        $this->selectedPeriod = "1";
+        $this->selectedPeriod = "5";
 
     }
 
@@ -40,34 +42,34 @@ class History extends Component
         $this->timeFormat = Auth::user()->hour_format_24;
         $this->dateFormat =Auth::user()->date_format;
         
-        $currentDay = Carbon::now();
+        $now = Carbon::now()->setTimeZone($this->userTz);
         
         switch($this->selectedPeriod) 
         {
-            case "1":
-                $period = Carbon::yesterday();
-                break;
             case "5":
-                $period = $currentDay->addDays(-5);
+                $period = $now->addDays(-5);
                 break;
             case "20":
-                $period = $currentDay->addDays(-20);
+                $period = $now->addDays(-20);
                 break;
             case "30":
-                $period = $currentDay->addDays(-30);
+                $period = $now->addDays(-30);
                 break;
             case "60":
-                $period = $currentDay->addDays(-60);
+                $period = $now->addDays(-60);
                 break;
             case "90":
-                $period = $currentDay->addDays(-90);
+                $period = $now->addDays(-90);
                 break;
         }
+
+
+            $records = TimeRecord::where('user_id', '=', $userId)
+            ->where('created_at', '>=', $period)
+            ->orderBy('created_at')
+            ->paginate(20);
     
-        $records = TimeRecord::where('user_id', '=', $userId)
-                            ->where('created_at', '>=', $period)
-                            ->orderBy('created_at')
-                            ->paginate(20);
+
        return $records;
     }
 

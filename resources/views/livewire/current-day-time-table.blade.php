@@ -14,11 +14,12 @@
                     </thead>
                     <tbody>
                         @php
-                        {{ $hours = 0; }}
-                        {{ $minutes = 0; }}
-                        {{ $seconds = 0; }}
-                        {{ $difference = 0; }}
-                        {{ $totalHours = 0; }}
+                            {{ $days = 0; }}
+                            {{ $hours = 0; }}
+                            {{ $minutes = 0; }}
+                            {{ $seconds = 0; }}
+                            {{ $difference = 0; }}
+                            {{ $totalHours = 0; }}
                         @endphp
                         @for($i = 0; $i < sizeof($records); $i++) @if($records[$i]->in_out == 0)
                             <tr class="border-b border-black bg-white dark:border-neutral-500 dark:bg-neutral-700">
@@ -28,43 +29,67 @@
 
                                 <td class="whitespace-nowrap px-6 py-4 font-medium">
                                     @php
-                                    {{$thisDate = new DateTime($records[$i]->created_at); }}
+                                        {{$thisDate = new DateTime($records[$i]->created_at); }}
                                     @endphp
 
                                     {{date_format($thisDate->setTimeZone(new DateTimeZone($userTz)),$dateFormat);}}
                                 </td>
                                 <td class="whitespace-nowrap px-6 py-4 font-medium">
                                     @if($timeFormat == false)
-                                    {{date_format($thisDate->setTimeZone(new DateTimeZone($userTz)),"h:i a");}}
+                                        {{date_format($thisDate->setTimeZone(new DateTimeZone($userTz)),"h:i a");}}
                                     @else
-                                    {{date_format($thisDate->setTimeZone(new DateTimeZone($userTz)),"H:i");}}
+                                        {{date_format($thisDate->setTimeZone(new DateTimeZone($userTz)),"H:i");}}
                                     @endif
 
                                 </td>
                                 <td class="whitespace-nowrap px-6 py-4 font-medium">
                                     @if($records[$i]->in_out == 0)
-                                    OUT
+                                        OUT
                                     @else
-                                    IN
+                                        IN
                                     @endif
                                 </td>
+                                @if($i > 0)
+                                    @if($records[$i]->in_out == 0 && $records[$i-1]->in_out == 1)
+                                        @php
+                                            {{ $firstDate = new DateTime($records[$i-1]->created_at); }}
+                                            {{ $secondDate = new DateTime($records[$i]->created_at); }}
+                                            {{ $difference = date_diff($firstDate, $secondDate, true); }}
+                                            {{ $days = $difference->d; }}
+                                            {{ $hours = $difference->h; }}
+                                            {{ $minutes = $difference->i; }}
+                                            {{ $seconds = $difference->s; }}
 
-                                @if($records[$i]->in_out == 0 && $records[$i-1]->in_out == 1 && $i > 0)
-                                @php
-                                {{ $firstDate = new DateTime($records[$i-1]->created_at); }}
-                                {{ $secondDate = new DateTime($records[$i]->created_at); }}
-                                {{ $difference = date_diff($firstDate, $secondDate, true); }}
-                                {{ $hours = $difference->h; }}
-                                {{ $minutes = $difference->i; }}
-                                {{ $seconds = $difference->s; }}
+
+                                            {{ $minutes += $seconds/60; }}
+
+                                            {{ $hours += $days*24; }}
+                                            {{ $hours += $minutes/60; }}
+                                            {{ $hours = 0.01 * (int)($hours * 100); }}
+                                            {{ $totalHours += $hours; }}
+                                        @endphp
+                                    @endif
+                                
+                                @else
+                                    @if($records[$i]->in_out == 0 && $previousDayRecords[sizeof($previousDayRecords) - 1]->in_out == 1)
+                                        @php
+                                            {{ $firstDate = new DateTime($previousDayRecords[sizeof($previousDayRecords) - 1]->created_at); }}
+                                            {{ $secondDate = new DateTime($records[$i]->created_at); }}
+                                            {{ $difference = date_diff($firstDate, $secondDate, true); }}
+                                            {{ $days = $difference->d; }}
+                                            {{ $hours = $difference->h; }}
+                                            {{ $minutes = $difference->i; }}
+                                            {{ $seconds = $difference->s; }}
 
 
-                                {{ $minutes += $seconds/60; }}
+                                            {{ $minutes += $seconds/60; }}
 
-                                {{ $hours += $minutes/60; }}
-                                {{ $hours = 0.01 * (int)($hours * 100); }}
-                                {{ $totalHours += $hours; }}
-                                @endphp
+                                            {{ $hours += $days*24; }}
+                                            {{ $hours += $minutes/60; }}
+                                            {{ $hours = 0.01 * (int)($hours * 100); }}
+                                            {{ $totalHours += $hours; }}
+                                        @endphp
+                                    @endif
                                 @endif
 
                                 <td class="whitespace-nowrap px-6 py-4 font-medium">

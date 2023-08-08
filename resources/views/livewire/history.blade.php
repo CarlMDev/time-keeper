@@ -1,13 +1,11 @@
 <div class="flex flex-col items-center pb-8 pt-2">
     <select  wire:model="selectedPeriod" class="'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm'">
-        <option value="1">Yesterday</option>
         <option value="5">Last 5 days</option>
         <option value="20">Last 20 days</option>
         <option value="30">Last 30 days</option>
         <option value="60">Last 60 days</option>
         <option value="90">Last 90 days</option>
     </select>
-
     <div class="flex justify-center pt-4">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
