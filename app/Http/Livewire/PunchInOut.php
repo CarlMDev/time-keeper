@@ -10,9 +10,7 @@ use App\Models\TimeRecord;
 class PunchInOut extends Component
 {
     public $buttonMessage;
-    public $buttonStyle;
     public $status;
-    public $statusStyle;
 
     public function mount()
     {
@@ -32,19 +30,14 @@ class PunchInOut extends Component
     public function updateVariables($value)
     {
         if($value == 0)
-        {
-            $this->buttonStyle = "bg-blue-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded";
-           
+        {      
             $this->buttonMessage = "CLOCK IN";
             $this->status = "You are currently clocked OUT";
-            $this->statusStyle = "text-xl break-after-auto pb-8 pt-2 text-red-600";
         }
         else
         {
-            $this->buttonStyle = "bg-blue-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded";
             $this->buttonMessage = "CLOCK OUT";
             $this->status = "You are currently clocked IN";
-            $this->statusStyle = "text-xl break-after-auto pb-8 pt-2 text-green-700";
         }
     }
 
