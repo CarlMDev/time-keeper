@@ -6,7 +6,7 @@
 
         <div>
             <button wire:click="toggle" @click="open = ! open"
-                x-bind:class="{'bg-red-500 text-white hover:bg-green-200 font-bold py-2 px-4 rounded' : ! open , 'bg-green-500 text-white hover:bg-red-200 font-bold py-2 px-4 rounded': open}  ">
+                x-bind:class="{'bg-red-500 text-white hover:bg-green-200 hover:text-black font-bold py-2 px-4 rounded' : ! open , 'bg-green-500 text-white hover:bg-red-200 hover:text-black font-bold py-2 px-4 rounded': open}  ">
                 {{ $buttonMessage }}
             </button>
         </div>
