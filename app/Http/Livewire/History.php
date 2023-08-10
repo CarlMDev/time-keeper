@@ -47,24 +47,25 @@ class History extends Component
         switch($this->selectedPeriod) 
         {
             case "5":
-                $period = $now->addDays(-5);
+                $period = $now->addDays(-6);
                 break;
             case "20":
-                $period = $now->addDays(-20);
+                $period = $now->addDays(-21);
                 break;
             case "30":
-                $period = $now->addDays(-30);
+                $period = $now->addDays(-31);
                 break;
             case "60":
-                $period = $now->addDays(-60);
+                $period = $now->addDays(-61);
                 break;
             case "90":
-                $period = $now->addDays(-90);
+                $period = $now->addDays(-91);
                 break;
         }
 
-
-            $records = TimeRecord::where('user_id', '=', $userId)
+        $period = $period->setTimeZone('UTC');    
+    
+        $records = TimeRecord::where('user_id', '=', $userId)
             ->where('created_at', '>=', $period)
             ->orderBy('created_at')
             ->paginate(20);
