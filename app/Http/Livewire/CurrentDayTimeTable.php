@@ -28,8 +28,11 @@ class CurrentDayTimeTable extends Component
 
         $this->tz = TimeZone::where('name', '=', $this->userTz)->first();
         
-        $this->records = DB::select('SELECT * FROM time_records WHERE user_id = ' . $userId . ' AND created_at >= CONVERT_TZ(\''. date('Y-m-d') .  ' 00:00:00\',\'' . $this->tz->code . '\',\'+00:00\') ORDER BY created_at;');
-        $this->previousDayRecords = DB::select('SELECT * FROM time_records WHERE user_id = ' . $userId . ' AND created_at >= CONVERT_TZ(\''. date('Y/m/d',strtotime("-1 days")) .  ' 00:00:00\',\'' . $this->tz->code . '\',\'+00:00\') ORDER BY created_at;');        
+        $this->records = DB::select('SELECT * FROM time_records WHERE user_id = ' . $userId . ' AND created_at >= \''. date('Y-m-d',strtotime('Last Monday')) .  '\' ORDER BY created_at;');
+        //$this->records = DB::select('SELECT * FROM time_records WHERE user_id = ' . $userId . ' AND created_at >= CONVERT_TZ(\''. date('Y-m-d',strtotime('last Monday')) .  ' 00:00:00\',\'' . $this->tz->code . '\',\'+00:00\') ORDER BY created_at;');
+        //dd($this->records);
+        
+        $this->previousDayRecords = DB::select('SELECT * FROM time_records WHERE user_id = ' . $userId . ' AND created_at >= CONVERT_TZ(\''. date('Y/m/d',strtotime("-1 days")) .  ' 00:00:00\',\'' . $this->tz->code . '\',\'+00:00\') ORDER BY created_at DESC;');        
     }
 
     public function render()
