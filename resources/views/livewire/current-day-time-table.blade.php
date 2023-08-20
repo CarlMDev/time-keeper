@@ -24,21 +24,21 @@
                         @for($i = 0; $i < sizeof($records); $i++)
                             @php
                                 {{ $thisDate = new DateTime($records[$i]->created_at); }}
-                                {{ $thisDayOfWeek = date('l', strtotime($records[$i]->created_at)); }}
+                                {{ $thisDayOfWeek = date_format($thisDate->setTimeZone(new DateTimeZone($userTz)), 'l'); }}
 
                                 if ( $i < sizeof($records) - 1) 
                                 {
                                     {{ $nextDate = new DateTime($records[$i + 1]->created_at); }}
-                                    {{ $nextDayOfWeek = date('l', strtotime($records[$i + 1]->created_at)); }}
+                                    {{ $nextDayOfWeek = date_format($nextDate->setTimeZone(new DateTimeZone($userTz)), 'l'); }}
                                 }
                                 if ( $i > 0) 
                                 {
                                     {{ $previousDate = new DateTime($records[$i - 1]->created_at); }}
-                                    {{ $previousDayOfWeek = date('l', strtotime($records[$i - 1]->created_at)); }}
+                                    {{ $previousDayOfWeek = date_format($previousDate->setTimeZone(new DateTimeZone($userTz)), 'l'); }}
                                 }
                             @endphp
 
-                            @if ($i == 0 || $i < sizeof($records) - 1)
+                            @if ($i == 0 || $i <= sizeof($records) - 1)
                                 @if ($i == 0)
                                 <tr class="border-b border-black bg-gray dark:border-neutral-500 dark:bg-neutral-700">
                                     <td class="whitespace-nowrap px-6 py-4 font-medium">
