@@ -39,10 +39,10 @@
                             @endphp
 
                             @if ($i == 0 || $i <= sizeof($records) - 1)
-                                @if ($i == 0)
+                                @if ($i == 0 || $thisDayOfWeek != $previousDayOfWeek)
                                 <tr class="border-b border-black bg-gray dark:border-neutral-500 dark:bg-neutral-700">
                                     <td class="whitespace-nowrap px-6 py-4 font-medium">
-                                        {{ $nextDayOfWeek }}
+                                        {{ $thisDayOfWeek }}
                                     </td>
                                     <td class="whitespace-nowrap px-6 py-4 font-medium">
                                     </td>
@@ -52,22 +52,7 @@
                                     </td>
                                     <td class="whitespace-nowrap px-6 py-4 font-medium">
                                     </td>
-                                </tr>
-                                @elseif ($i > 0 && $thisDayOfWeek != $previousDayOfWeek)
-                                <tr class="border-b border-black bg-gray dark:border-neutral-500 dark:bg-neutral-700">
-                                    <td class="whitespace-nowrap px-6 py-4 font-medium">
-                                    {{ $thisDayOfWeek }}
-                                    </td>
-                                    <td class="whitespace-nowrap px-6 py-4 font-medium">
-                                    </td>
-                                    <td class="whitespace-nowrap px-6 py-4 font-medium">
-                                    </td>
-                                    <td class="whitespace-nowrap px-6 py-4 font-medium">
-                                    </td>
-                                    <td class="whitespace-nowrap px-6 py-4 font-medium">
-                                    </td>
-                                </tr>
-                                  
+                                </tr>   
                                 @endif
                             @endif
 

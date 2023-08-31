@@ -47,6 +47,8 @@ class PunchInOut extends Component
 
         $user = User::findorfail($userId);
 
+        $userIP = \Request::ip();
+        
         if($user->clocked_in_out == 0)
         {
             $user->clocked_in_out = 1;
