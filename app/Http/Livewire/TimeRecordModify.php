@@ -7,7 +7,7 @@ use App\Models\TimeRecord;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-class TimeRecordEdit extends Component
+class TimeRecordModify extends Component
 {
     public $recordId;
     public $userTz;
@@ -29,6 +29,6 @@ class TimeRecordEdit extends Component
         $this->record = TimeRecord::where('id', '=', $this->recordId)->first();
         $this->employee = User::where('id', '=', $this->record->user_id)->first();
 
-        return view('livewire.time-record-edit', ['employee' => $this->employee, 'record' => $this->record]);
+        return view('livewire.time-record-modify', ['employee' => $this->employee, 'record' => $this->record]);
     }
 }

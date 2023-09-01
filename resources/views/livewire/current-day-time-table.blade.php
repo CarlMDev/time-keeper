@@ -106,7 +106,7 @@
                                 <td class="whitespace-nowrap px-6 py-4 font-medium">
                                     <button
                                         class="bg-cyan-600 text-white active:bg-cyan-200 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
-                                        <a href="{{ url('/time-record-edit/' . $records[$i]->id) }}">Request modification</a>
+                                        <a href="{{ url('/time-record-modify/' . $records[$i]->id) }}">Request modification</a>
                                     </button>
                                 </td>
                             </tr>

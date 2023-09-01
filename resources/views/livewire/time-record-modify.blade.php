@@ -43,11 +43,11 @@
                     </tbody>
                 </table>
                 <div class="my-2">
-                    <button
+                    <a  href="{{ url('/edit-time-record/' . $record->id) }}"
                         class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                         type="button">
                         Edit this record
-                    </button>
+                    </a>
                     <button wire:click='$emit("openModal", "confirm-record-delete", {{ json_encode(["$recordId" => $record->id]) }})'
                         class="bg-red-500 text-white active:bg-red-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                         Delete this record
