@@ -25,16 +25,16 @@ class EditTimeRecord extends Component
         $this->time24HrFormat = Auth::user()->hour_format_24;
 
         $this->record = TimeRecord::where('id', '=', $this->recordId)->first();
-        $this->recordDate = date_format($this->record->created_at, $this->dateFormat);
+        $this->recordDate = $this->record->created_at;
 
-        if ($this->time24HrFormat == true)
+        /*if ($this->time24HrFormat == true)
         {
-            $this->recordTime = date_format($this->record->created_at, 'H:i');
+            $this->recordTime = date_format($this->record->created_at->setTimeZone(new DateTimeZone($userTz)), 'H:i');
         }
         else
         {
-            $this->recordTime = date_format($this->record->created_at, 'h:i');
-        }
+            $this->recordTime = date_format($this->record->created_at->setTimeZone(new DateTimeZone($userTz)), 'h:i');
+        }*/
         
     }
 

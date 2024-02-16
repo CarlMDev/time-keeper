@@ -7,6 +7,7 @@ use LivewireUI\Modal\ModalComponent;
 class ConfirmRecordDelete extends ModalComponent
 {
     public $recordId;
+    protected $listeners = ['closeModal' => 'render'];
 
     public function mount($recordId)
     {

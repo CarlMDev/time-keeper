@@ -1,7 +1,18 @@
 <div class="flex justify-center pt-4">
     <div class="grid grid-cols-1">
-        <div class="py-3">Current Record date: <span class="text-red-600">{{$recordDate}}</span></div>
-        <div class="py-3">Current Record time: <span class="text-red-600">{{$recordTime}}</span></div>
+
+    @php
+        {{$thisDate = new DateTime($recordDate); }}
+    @endphp                            
+        <div class="py-3">Current Record date: <span class="text-red-600">{{date_format($thisDate->setTimeZone(new DateTimeZone($userTz)),$dateFormat);}}</span></div>
+        <div class="py-3">Current Record time: <span class="text-red-600">
+        @if($time24HrFormat == false)
+            {{date_format($thisDate->setTimeZone(new DateTimeZone($userTz)),"h:i a");}}
+        @else
+            {{date_format($thisDate->setTimeZone(new DateTimeZone($userTz)),"H:i");}}
+        @endif
+        
+        </span></div>
 
         <div class="py-3">Select new date and time values:</div>
         <div class="py-5">
