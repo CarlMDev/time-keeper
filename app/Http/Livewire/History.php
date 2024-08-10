@@ -38,7 +38,7 @@ class History extends Component
     {
         $period = "";
 
-        $this->userTz = Auth::user()->time_zone;
+        $this->userTz = Auth::user()->time_zone_code;
         $this->timeFormat = Auth::user()->hour_format_24;
         $this->dateFormat =Auth::user()->date_format;
         

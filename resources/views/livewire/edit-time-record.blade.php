@@ -16,9 +16,12 @@
 
         <div class="py-3">Select new date and time values:</div>
         <div class="py-5">
-            <label for="record-date">Date:</label>
+            <label for="record-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date/time:</label>
             <input type="datetime-local" placeholder="dd-mm-yyyy" value="" name="record-date" min="2000-01-01"
-                max="2100-12-31" required />
+                max="2100-12-31" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+        </div>
+        <div class="py-5">
+            <input type="text"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Optional message"/>
         </div>
         <div class="my-2">
             <a href="{{ url('/dashboard') }}"
