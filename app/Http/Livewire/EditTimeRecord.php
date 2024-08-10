@@ -20,22 +20,13 @@ class EditTimeRecord extends Component
 
     public function mount()
     {
-        $this->userTz = Auth::user()->time_zone;
+        $this->userTz = Auth::user()->time_zone_code;
         $this->dateFormat =Auth::user()->date_format;
         $this->time24HrFormat = Auth::user()->hour_format_24;
 
         $this->record = TimeRecord::where('id', '=', $this->recordId)->first();
         $this->recordDate = $this->record->created_at;
 
-        /*if ($this->time24HrFormat == true)
-        {
-            $this->recordTime = date_format($this->record->created_at->setTimeZone(new DateTimeZone($userTz)), 'H:i');
-        }
-        else
-        {
-            $this->recordTime = date_format($this->record->created_at->setTimeZone(new DateTimeZone($userTz)), 'h:i');
-        }*/
-        
     }
 
     public function render()
