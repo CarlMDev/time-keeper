@@ -22,7 +22,7 @@ class EditTimeRecord extends Component
 
     public $requestedDateTime;
     public $message;
-    
+
     public $userTzName;
 
     public function mount()
@@ -34,12 +34,6 @@ class EditTimeRecord extends Component
 
         $this->record = TimeRecord::where('id', '=', $this->recordId)->first();
         $this->recordDate = $this->record->created_at;
-
-    }
-
-
-    public function updated()
-    {
 
     }
 
