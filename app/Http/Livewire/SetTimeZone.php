@@ -9,24 +9,25 @@ use App\Models\TimeZone;
 
 class SetTimeZone extends Component
 {
-    public $selectedTimeZone;
+    public $selectedTimeZoneCode;
+    public $selectedTimeZoneName;
 
     public $timezones = array(
         'Pacific/Midway'       => "(GMT-11:00) Midway Island",
         'US/Samoa'             => "(GMT-11:00) Samoa",
         'US/Hawaii'            => "(GMT-10:00) Hawaii",
         'US/Alaska'            => "(GMT-09:00) Alaska",
-        'US/Pacific'           => "(GMT-08:00) Pacific Time (US &amp; Canada)",
+        'US/Pacific'           => "(GMT-08:00) Pacific Time (US & Canada)",
         'America/Tijuana'      => "(GMT-08:00) Tijuana",
         'US/Arizona'           => "(GMT-07:00) Arizona",
-        'US/Mountain'          => "(GMT-07:00) Mountain Time (US &amp; Canada)",
+        'US/Mountain'          => "(GMT-07:00) Mountain Time (US & Canada)",
         'America/Chihuahua'    => "(GMT-07:00) Chihuahua",
         'America/Mazatlan'     => "(GMT-07:00) Mazatlan",
         'America/Mexico_City'  => "(GMT-06:00) Mexico City",
         'America/Monterrey'    => "(GMT-06:00) Monterrey",
         'Canada/Saskatchewan'  => "(GMT-06:00) Saskatchewan",
-        'US/Central'           => "(GMT-06:00) Central Time (US &amp; Canada)",
-        'US/Eastern'           => "(GMT-05:00) Eastern Time (US &amp; Canada)",
+        'US/Central'           => "(GMT-06:00) Central Time (US & Canada)",
+        'US/Eastern'           => "(GMT-05:00) Eastern Time (US & Canada)",
         'US/East-Indiana'      => "(GMT-05:00) Indiana (East)",
         'America/Bogota'       => "(GMT-05:00) Bogota",
         'America/Lima'         => "(GMT-05:00) Lima",
@@ -130,9 +131,12 @@ class SetTimeZone extends Component
     {
         $user = Auth::user();
 
-        $timeZone = TimeZone::where('code', '=', $user->time_zone)->first();
+        $timeZone = TimeZone::where('code', '=', $user->time_zone_code)
+            ->where('name', '=', $user->time_zone_name)
+            ->first();
 
-        $this->selectedTimeZone = $timeZone->name;
+        $this->selectedTimeZoneName = $timeZone->name;
+        $this->selectedTimeZoneCode = $timeZone->code;
     }
 
     public function updateTimeZone()
@@ -141,8 +145,10 @@ class SetTimeZone extends Component
 
         $user = User::find($userId);
 
-        $timeZone = TimeZone::where('name', '=', $this->selectedTimeZone)->first();
-        $user->time_zone = $timeZone->code;
+        $timeZone = TimeZone::where('name', '=', $this->selectedTimeZoneName)->first();
+        $user->time_zone_code = $timeZone->code;
+        $user->time_zone_name = $timeZone->name;
+
         $user->save();
 
         $this->emitUp('saved');

@@ -13,7 +13,7 @@ class CurrentTime extends Component
     public function mount()
     {
         $user = Auth::user();
-        $this->userTimeZone = $user->time_zone;
+        $this->userTimeZone = $user->time_zone_code;
         $this->hourFormat = $user->hour_format_24;
     }
 
