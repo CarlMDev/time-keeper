@@ -5,10 +5,11 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\TimeZone;
 
 class SetTimeZone extends Component
 {
-    public $setTimeZone;
+    public $selectedTimeZone;
 
     public $timezones = array(
         'Pacific/Midway'       => "(GMT-11:00) Midway Island",
@@ -129,7 +130,9 @@ class SetTimeZone extends Component
     {
         $user = Auth::user();
 
-        $this->setTimeZone = $user->time_zone;
+        $timeZone = TimeZone::where('code', '=', $user->time_zone)->first();
+
+        $this->selectedTimeZone = $timeZone->name;
     }
 
     public function updateTimeZone()
@@ -138,7 +141,8 @@ class SetTimeZone extends Component
 
         $user = User::find($userId);
 
-        $user->time_zone = $this->setTimeZone;
+        $timeZone = TimeZone::where('name', '=', $this->selectedTimeZone)->first();
+        $user->time_zone = $timeZone->code;
         $user->save();
 
         $this->emitUp('saved');
