@@ -12,7 +12,7 @@
         <!-- Time Zone -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="time-zone" value="{{ __('Time zone') }}" />
-            <select id="time-zone" class="'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm'" wire:model.defer="selectedTimeZone">
+            <select id="time-zone" class="'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm'" wire:model.defer="selectedTimeZoneName">
                 @foreach ($timezones as $key => $value)
                 <option value="{{$key}}">{{$value}}</option>
                 @endforeach
