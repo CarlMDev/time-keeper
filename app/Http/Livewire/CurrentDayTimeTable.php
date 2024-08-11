@@ -11,7 +11,7 @@ class CurrentDayTimeTable extends Component
 {
     public $previousDayRecords;
     public $records;
-    public $userTz;
+    public $userTzCode;
     public $tz;
     public $timeFormat;
     public $dateFormat;
@@ -22,11 +22,11 @@ class CurrentDayTimeTable extends Component
     {
         $userId = Auth::user()->id;
 
-        $this->userTz = Auth::user()->time_zone_code;
+        $this->userTzCode = Auth::user()->time_zone_code;
         $this->timeFormat = Auth::user()->hour_format_24;
         $this->dateFormat =Auth::user()->date_format;
       
-        $this->tz = TimeZone::where('code', '=', $this->userTz)->first();
+        $this->tz = TimeZone::where('code', '=', $this->userTzCode)->first();
         
         $this->records = DB::select('SELECT * FROM time_records WHERE user_id = ' . $userId . ' AND created_at >= \''. date('Y-m-d',strtotime('monday this week')) .  '\' ORDER BY created_at;');
         

@@ -33,6 +33,11 @@ Route::middleware([
         return view('time-record-modify', ['id' => $id]);
     })->name('time-record-modify');
 
+    
+    Route::get('/time-record-modify/view/{id}', function ($id) {
+        return view('time-record-modify-view', ['id' => $id]);
+    })->name('time-record-modify-view');
+
     Route::get('/edit-time-record/{id}', function ($id) {
         return view('edit-time-record', ['id' => $id]);
     })->name('edit-time-record');
@@ -40,5 +45,9 @@ Route::middleware([
     Route::get('/time-record-delete-confirmation/{id}', function ($id) {
         return view('time-record-delete-confirmation', ['id' => $id]);
     })->name('time-record-delete-confirmation');
+
+    Route::get('/time-record-modification-request-cancel/{id}', function ($id) {
+        return view('time-record-mod-request-cancel', ['id' => $id]);
+    })->name('time-record-modification-request-cancel');
 
 });

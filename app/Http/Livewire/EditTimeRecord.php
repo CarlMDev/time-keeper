@@ -47,7 +47,7 @@ class EditTimeRecord extends Component
         {
             $this->requestedDateTime = str_replace('T', ' ', $this->requestedDateTime);
             $requestedDate =  Carbon::createFromFormat('Y-m-d H:i', $this->requestedDateTime, $this->userTzName);
-            $requestedDate->setTimezone('UTC');
+            $requestedDate->setTimezone('UTC'); //convert to utc time 
         
             $timeRecordModification = new TimeRecordModification();
 
@@ -60,6 +60,10 @@ class EditTimeRecord extends Component
             $timeRecordModification->message = $this->message != '' ? $this->message : NULL;
 
             $timeRecordModification->save();
+
+            $timeRecord = TimeRecord::find($this->recordId);
+            $timeRecord->modification_requested = 1;
+            $timeRecord->save();
 
             $success = true;
 
