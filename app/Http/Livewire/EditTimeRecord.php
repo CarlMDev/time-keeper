@@ -47,7 +47,7 @@ class EditTimeRecord extends Component
         {
             $this->requestedDateTime = str_replace('T', ' ', $this->requestedDateTime);
             $requestedDate =  Carbon::createFromFormat('Y-m-d H:i', $this->requestedDateTime, $this->userTzName);
-            $requestedDate->setTimezone('UTC'); //convert to utc time 
+            $requestedDate->setTimezone('+01:00'); //convert to utc time, needs +1:00 to work out correctly in db
         
             $timeRecordModification = new TimeRecordModification();
 

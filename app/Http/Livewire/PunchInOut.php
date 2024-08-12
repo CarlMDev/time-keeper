@@ -6,6 +6,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\TimeRecord;
+use Carbon\Carbon;
 
 class PunchInOut extends Component
 {
@@ -64,7 +65,7 @@ class PunchInOut extends Component
 
         $timeRecord->user_id = $userId;
         $timeRecord->in_out =  $user->clocked_in_out;
-        $timeRecord->created_at = gmdate("Y/m/d H:i:s");
+        $timeRecord->created_at = Carbon::now('UTC');
         $timeRecord->save();
         
         $this->updateVariables($user->clocked_in_out);
