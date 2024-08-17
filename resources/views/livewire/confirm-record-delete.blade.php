@@ -5,7 +5,7 @@
     <div class="flex justify-end">
         <div class="mr-4">
             <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
-            <a href="{{ url('/time-record-delete-confirmation/' . $recordId) }}">Yes</a>
+            <a href="{{ route('time-record-mod-del', ['id' => $recordId]) }}">Yes</a>
             </button>
         </div>
         <div>

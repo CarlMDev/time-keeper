@@ -110,7 +110,7 @@
                                 @if ($records[$i]->modification_requested == 1)
                                 <td class="whitespace-nowrap px-6 py-4 font-medium">
                                     Modification has been requested
-                                    <a href="{{ url('/time-record-modify/view/' . $records[$i]->id) }}">
+                                    <a href="{{ route('time-record-mod-view', ['id' => $records[$i]->id]) }}">
                                         <button
                                         class="bg-yellow-600 text-white active:bg-gold-200 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
                                        View request</button>
@@ -118,7 +118,7 @@
                                 </td>
                                 @else
                                 <td class="whitespace-nowrap px-6 py-4 font-medium">
-                                    <a href="{{ url('/time-record-modify/' . $records[$i]->id) }}">    
+                                    <a href="{{ route('time-record-mod-add', ['id' => $records[$i]->id]) }}">    
                                         <button
                                             class="bg-cyan-600 text-white active:bg-cyan-200 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
                                             Request modification
