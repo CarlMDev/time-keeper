@@ -19,6 +19,7 @@ class TimeRecordModifyView extends Component
     public $record;
     public $recordModification;
 
+
     public function mount()
     {
         $this->userTzCode = Auth::user()->time_zone_code;
@@ -29,6 +30,7 @@ class TimeRecordModifyView extends Component
         $this->employee = User::where('id', '=', $this->record->user_id)->first();
 
         $this->recordModification = TimeRecordModification::where('time_record_id', '=', $this->recordId)->first();
+
     }
 
     public function render()
