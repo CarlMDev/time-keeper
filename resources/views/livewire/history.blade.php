@@ -22,8 +22,13 @@
                         <tbody>
                         @if(sizeof($records) > 0)
                             @for ($i = 0; $i < sizeof($records); $i++)
-                            @if ($records[$i]->modification_requested == 1)
+
+                            @if ($records[$i]->modification_requested == 1 && $records[$i]->modification_completed == 0)
                                 <tr class="border-b border-black bg-amber-200 dark:border-neutral-500 dark:bg-neutral-700">
+                                
+                            @elseif ($records[$i]->modification_requested == 1 && $records[$i]->modification_completed == 1)
+                                <tr class="border-b border-black bg-purple-200 dark:border-neutral-500 dark:bg-neutral-700">
+                                
                             @else
                                 @if ($records[$i]->in_out == 0)
                                     <tr class="border-b border-black bg-white dark:border-neutral-500 dark:bg-neutral-700">
@@ -54,7 +59,7 @@
                                         IN
                                         @endif
                                     </td>
-                                    @if ($records[$i]->modification_requested == 1)
+                                    @if ($records[$i]->modification_requested == 1 && $records[$i]->modification_completed == 0)
                                 <td class="whitespace-nowrap px-6 py-4 font-medium">
                                     Modification has been requested
                                     <a href="{{ route('time-record-mod-view', ['id' => $records[$i]->id]) }}">
@@ -63,6 +68,12 @@
                                        View request</button>
                                     </a>
                                 </td>
+
+                                @elseif ($records[$i]->modification_requested == 1 && $records[$i]->modification_completed == 1)
+                                <td class="whitespace-nowrap px-6 py-4 font-medium">
+                                    This record has been modified
+                                </td>
+
                                 @else
                                 <td class="whitespace-nowrap px-6 py-4 font-medium">
                                     <a href="{{ route('time-record-mod-add', ['id' => $records[$i]->id]) }}">    
