@@ -16,17 +16,21 @@
                                 <th scope="col" class="px-6 py-4">Date</th>
                                 <th scope="col" class="px-6 py-4">Time</th>
                                 <th scope="col" class="px-6 py-4">Event</th>
+                                <th scope="col" class="px-6 py-4"></th>
                             </tr>
                         </thead>
                         <tbody>
                         @if(sizeof($records) > 0)
                             @for ($i = 0; $i < sizeof($records); $i++)
-                            @if($records[$i]->in_out == 0)
-                                <tr class="border-b border-black bg-white dark:border-neutral-500 dark:bg-neutral-700">
-                                    @else
-                                <tr
-                                    class="border-b border-black bg-cyan-100 dark:border-neutral-500 dark:bg-neutral-700">
-                                    @endif
+                            @if ($records[$i]->modification_requested == 1)
+                                <tr class="border-b border-black bg-amber-200 dark:border-neutral-500 dark:bg-neutral-700">
+                            @else
+                                @if ($records[$i]->in_out == 0)
+                                    <tr class="border-b border-black bg-white dark:border-neutral-500 dark:bg-neutral-700">
+                                @else
+                                    <tr class="border-b border-black bg-cyan-100 dark:border-neutral-500 dark:bg-neutral-700">
+                                @endif
+                            @endif
 
                                     <td class="whitespace-nowrap px-6 py-4 font-medium">
                                         @php
@@ -50,6 +54,25 @@
                                         IN
                                         @endif
                                     </td>
+                                    @if ($records[$i]->modification_requested == 1)
+                                <td class="whitespace-nowrap px-6 py-4 font-medium">
+                                    Modification has been requested
+                                    <a href="{{ route('time-record-mod-view', ['id' => $records[$i]->id]) }}">
+                                        <button
+                                        class="bg-yellow-600 text-white active:bg-gold-200 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                                       View request</button>
+                                    </a>
+                                </td>
+                                @else
+                                <td class="whitespace-nowrap px-6 py-4 font-medium">
+                                    <a href="{{ route('time-record-mod-add', ['id' => $records[$i]->id]) }}">    
+                                        <button
+                                            class="bg-cyan-600 text-white active:bg-cyan-200 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                                            Request modification
+                                        </button>
+                                    </a>
+                                </td>
+                                @endif
                                 </tr>
                             @endfor
                             

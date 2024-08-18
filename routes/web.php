@@ -54,4 +54,8 @@ Route::middleware([
         return view('time-record-requests');
     })->name('time-record-requests');
 
+    Route::get('/time-record/modification/request/review/{id}', function ($id) {
+        return view('time-record-mod-request-review', ['id' => $id]);
+    })->name('time-record-mod-request-review');
+
 });
