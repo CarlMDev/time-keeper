@@ -7,7 +7,7 @@
                         <thead class="border-b bg-red-100 font-medium dark:border-neutral-500 dark:bg-neutral-600">
                             <tr>
                                 <th scope="col" class="px-6 py-4">Employee Name</th>
-                                <th scope="col" class="px-6 py-4">Type</th>
+                                <th scope="col" class="px-6 py-4">Request Type</th>
                                 <th scope="col" class="px-6 py-4">Date/time</th>
                                 <th scope="col" class="px-6 py-4">Event</th>
                                 <th scope="col" class="px-6 py-4"></th>
