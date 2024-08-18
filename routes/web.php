@@ -29,25 +29,29 @@ Route::middleware([
         return view('history');
     })->name('history');
 
-    Route::get('/time-record/modification/add/{id}', function ($id) {
+    Route::get('/time-record/modification/request/add/{id}', function ($id) {
         return view('time-record-modify', ['id' => $id]);
     })->name('time-record-mod-add');
 
     
-    Route::get('/time-record/modification/view/{id}', function ($id) {
+    Route::get('/time-record/modification/request/view/{id}', function ($id) {
         return view('time-record-modify-view', ['id' => $id]);
     })->name('time-record-mod-view');
 
-    Route::get('/time-record/edit/{id}', function ($id) {
+    Route::get('/time-record/modification/request/edit/{id}', function ($id) {
         return view('edit-time-record', ['id' => $id]);
     })->name('time-record-mod-edit');
 
-    Route::get('/time-record//{id}', function ($id) {
+    Route::get('/time-record/modification/request/delete/{id}', function ($id) {
         return view('time-record-delete-confirmation', ['id' => $id]);
     })->name('time-record-mod-del');
 
-    Route::get('/time-record/request/cancel/{id}', function ($id) {
+    Route::get('/time-record/modification/request/cancel/{id}', function ($id) {
         return view('time-record-mod-request-cancel', ['id' => $id]);
     })->name('time-record-mod-request-cancel');
+
+    Route::get('/time-record/modification/requests', function() {
+        return view('time-record-requests');
+    })->name('time-record-requests');
 
 });
