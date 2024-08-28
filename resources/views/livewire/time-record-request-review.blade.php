@@ -7,10 +7,10 @@
                     <h2>{{$user->name}} requests a modification on a clock-{{$modification->in_out == 1 ?  "IN" : "OUT"}} record</h2>
                     @php
                         $existingDate = date_create($modification->existing_record_date_time);
-                        $existingDate->setTimezone(new DateTimeZone($user->time_zone_code));
+                        $existingDate->setTimezone(new DateTimeZone($user->time_zone_name));
 
                         $requestedDate = date_create($modification->requested_record_date_time);
-                        $requestedDate->setTimezone(new DateTimeZone($user->time_zone_code));
+                        $requestedDate->setTimezone(new DateTimeZone($user->time_zone_name));
                     @endphp
                     <h2>The request involves changing the record's date/time from</h2>
                     <h2>{{date_format($existingDate, 'm/d/Y H:i:s')}}</h2>
@@ -19,7 +19,7 @@
                 @else
                     @php
                         $createDate = date_create($timeRecord->created_at);
-                        $createDate->setTimezone(new DateTimeZone($user->time_zone_code));
+                        $createDate->setTimezone(new DateTimeZone($user->time_zone_name));
                     @endphp
                     <h2>{{$user->name}} requests to delete a clock-{{$modification->in_out = 1 ?  "IN" : "OUT"}} record</h2>
                     <h2>Dated: {{date_format($createDate, 'm/d/Y H:i:s')}}</h2>

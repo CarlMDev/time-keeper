@@ -22,7 +22,7 @@ class TimeRecordModifyView extends Component
 
     public function mount()
     {
-        $this->userTzCode = Auth::user()->time_zone_code;
+        $this->userTzCode = Auth::user()->time_zone_name;
         $this->dateFormat =Auth::user()->date_format;
         $this->timeFormat = Auth::user()->hour_format_24;
 

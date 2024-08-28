@@ -27,7 +27,7 @@
 
                                     @php
                                         $createdDate = date_create($recordList[$i]->created_at);
-                                        $createdDate->setTimezone(new DateTimeZone($recordList[$i]->tz_code))
+                                        $createdDate->setTimezone(new DateTimeZone($recordList[$i]->tz_name))
                                     @endphp
 
                                     <td class="whitespace-nowrap px-6 py-4 font-medium">

@@ -15,7 +15,7 @@ class TimeRecordRequestList extends Component
         $this->recordList = TimeRecordModification::where('time_record_modifications.request_processed', '=', 0)
         ->join('users', 'users.id', '=', 'time_record_modifications.user_id')
         ->join('time_records', 'time_records.id', '=', 'time_record_modifications.time_record_id')
-        ->select('users.name AS name', 'time_record_modifications.modification_type AS modification_type', 'time_record_modifications.id AS id', 'time_records.created_at AS created_at', 'time_records.in_out AS in_out', 'users.time_zone_code as tz_code')
+        ->select('users.name AS name', 'time_record_modifications.modification_type AS modification_type', 'time_record_modifications.id AS id', 'time_records.created_at AS created_at', 'time_records.in_out AS in_out', 'users.time_zone_code as tz_code', 'users.time_zone_name as tz_name')
         ->get();
         
     }

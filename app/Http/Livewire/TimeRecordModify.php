@@ -19,7 +19,7 @@ class TimeRecordModify extends Component
 
     public function mount()
     {
-        $this->userTz = Auth::user()->time_zone_code;
+        $this->userTz = Auth::user()->time_zone_name;
         $this->dateFormat =Auth::user()->date_format;
         $this->timeFormat = Auth::user()->hour_format_24;
     }

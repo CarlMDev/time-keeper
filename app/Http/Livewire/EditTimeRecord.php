@@ -27,7 +27,7 @@ class EditTimeRecord extends Component
 
     public function mount()
     {
-        $this->userTzCode = Auth::user()->time_zone_code;
+        $this->userTzCode = Auth::user()->time_zone_name;
         $this->dateFormat =Auth::user()->date_format;
         $this->userTzName = Auth::user()->time_zone_name;
         $this->time24HrFormat = Auth::user()->hour_format_24;
